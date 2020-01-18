@@ -69,10 +69,6 @@ export default class App extends React.Component {
     document.addEventListener('keydown', this.handleKeyPress);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyPress);
-  }
-
   setDisplay = audioName => {
     this.setState({
       audioName,
@@ -81,7 +77,6 @@ export default class App extends React.Component {
 
   playSound = audioId => {
     const sound = document.getElementById(audioId);
-    sound.currentTime = 0;
     sound.play();
   };
 
@@ -108,7 +103,7 @@ export default class App extends React.Component {
 
   render() {
     const audioKeyValues = audioList.map(item => (
-      <button class="drum-pad" id={item.buttonId} onClick={this.onClick}>
+      <button className="drum-pad" id={item.buttonId} onClick={this.onClick}>
         {item.audioId}
         <audio
           className="clip"
